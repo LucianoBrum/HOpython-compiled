@@ -33,3 +33,18 @@ mylib.add_int_ref(C.byref(cinco_int),
                   C.byref(seis_int),
                   C.byref(res_int))
 print(res_int.value)
+
+in1 = (C.c_int * 3) (2, 4, -2)
+in2 = (C.c_int * 3) (3, -1, -2)
+out = (C.c_int * 3) ()
+mylib.add_int_array(C.byref(in1),
+                    C.byref(in2),
+                    C.byref(out),
+                    3)
+print(out[0], out[1], out[2])
+
+flin1 = (C.c_float * 3) (2.0, 1.5, 3.2)
+flin2 = (C.c_float * 3) (1.5, -3.0, 0.5)
+flout = C.c_float()
+
+print(mylib.dot_product(C.byref(flin1), C.byref(flin2), 3))
